@@ -1,13 +1,21 @@
-function maxSlidingWindow(nums, k) {
-  const result = [];
-  const queue = [];
-  for (let i = 0; i < nums.length; i++) {
-    while (queue.length && nums[i] >= nums[queue[queue.length - 1]]) {
-      queue.pop();
+function getPermutation(n, k) {
+  const nums = Array.from({ length: n }, (_, i) => i + 1);
+  let result = "";
+  let count = 0;
+  const backtrack = (current) => {
+    if (current.length === n) {
+      count++;
+      if (count === k) result = current.join("");
+      return;
     }
-    queue.push(i);
-    if (queue[0] === i - k) queue.shift();
-    if (i >= k - 1) result.push(nums[queue[0]]);
-  }
+    if (count >= k) return;
+    for (const num of nums) {
+      if (current.includes(num)) continue;
+      current.push(num);
+      backtrack(current);
+      current.pop();
+    }
+  };
+  backtrack([]);
   return result;
 }
