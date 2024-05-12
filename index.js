@@ -1,16 +1,9 @@
-function combine(n, k) {
-  const result = [];
-  backtrack(1, []);
-  return result;
-  function backtrack(start, current) {
-    if (current.length === k) {
-      result.push([...current]);
-      return;
-    }
-    for (let i = start; i <= n; i++) {
-      current.push(i);
-      backtrack(i + 1, current);
-      current.pop();
-    }
+function maxProfit(prices) {
+  let minPrice = Infinity;
+  let maxProfit = 0;
+  for (const price of prices) {
+    minPrice = Math.min(minPrice, price);
+    maxProfit = Math.max(maxProfit, price - minPrice);
   }
+  return maxProfit;
 }
