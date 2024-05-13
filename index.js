@@ -1,9 +1,1 @@
-function maxProfit(prices) {
-  let minPrice = Infinity;
-  let maxProfit = 0;
-  for (const price of prices) {
-    minPrice = Math.min(minPrice, price);
-    maxProfit = Math.max(maxProfit, price - minPrice);
-  }
-  return maxProfit;
-}
+const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
